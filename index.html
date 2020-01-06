@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      navigator.getBattery().then(function(battery) {
+          var str = "当前电量: "+ battery.level * 100 + '%';
+        // 是否正在充电，yes-充电
+        if(battery.charging){
+            str += "(正在充电)"
+        }
+        // alert('Battery charging? ' + (battery.charging ? 'yes' : 'no'))
+        // 当前剩余电量
+        console.log('Battery level: ' + battery.level * 100 + '%')
+        alert(str);
+
+        battery.addEventListener('chargingchange', function() {
+          console.log('Battery charging? ' + (battery.charging ? 'yes' : 'no'))
+        })
+
+        battery.addEventListener('levelchange', function() {
+          console.log('Battery level: ' + battery.level * 100 + '%')
+        })
+      })
+    </script>
+  </body>
+</html>
